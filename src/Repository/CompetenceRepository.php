@@ -19,10 +19,10 @@ class CompetenceRepository extends ServiceEntityRepository
         parent::__construct($registry, Competence::class);
     }
 
-    // /**
-    //  * @return Competence[] Returns an array of Competence objects
-    //  */
-    /*
+     /**
+      * @return Competence[] Returns an array of Competence objects
+      */
+    
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('c')
@@ -34,7 +34,7 @@ class CompetenceRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Competence
