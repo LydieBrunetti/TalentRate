@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Periode;
+use App\Entity\Parcours;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Periode|null find($id, $lockMode = null, $lockVersion = null)
- * @method Periode|null findOneBy(array $criteria, array $orderBy = null)
- * @method Periode[]    findAll()
- * @method Periode[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Parcours|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Parcours|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Parcours[]    findAll()
+ * @method Parcours[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PeriodeRepository extends ServiceEntityRepository
+class ParcoursRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Periode::class);
+        parent::__construct($registry, Parcours::class);
     }
 
     // /**
-    //  * @return Periode[] Returns an array of Periode objects
+    //  * @return Parcours[] Returns an array of Parcours objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PeriodeRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Periode
+    public function findOneBySomeField($value): ?Parcours
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

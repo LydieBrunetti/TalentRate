@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -41,6 +42,22 @@ class Competence
      * @ORM\Column(type="integer")
      */
     private $seuil_maxi;
+
+    /**
+     *@ORM\ManyToMany(targetEntity="App\Entity\Formateur", mappedBy="competences")
+     */
+    private $formateurs;
+
+    /**
+     *@ORM\ManyToMany(targetEntity="App\Entity\Parcours", mappedBy="competences")
+     */
+    private $parcours;
+
+    public function __construct()
+    {
+        $this->formateurs = new ArrayCollection();
+        $this->parcours = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,4 +123,29 @@ class Competence
 
         return $this;
     }
+
+    public function getFormateurs()
+    {
+        return $this->formateurs;
+    }
+
+    public function setFormateurs(ArrayCollection $formateurs): self
+    {
+        $this->formateurs = $formateurs;
+
+        return $this;
+    }
+
+    public function getParcours()
+    {
+        return $this->parcours;
+    }
+
+    public function setParcours(ArrayCollection $parcours): self
+    {
+        $this->parcours = $parcours;
+
+        return $this;
+    }
+
 }

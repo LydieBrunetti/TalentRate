@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +31,31 @@ class Formateur
      * @ORM\Column(type="date")
      */
     private $date_de_naissance;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Cours", mappedBy="formateur")
+     */
+    private $cours;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="App\Entity\Competence", inversedBy="formateurs")
+    * @ORM\JoinTable(name="enseigner")
+     */
+    private $competences;
+
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Devoir", mappedBy="formateurs")
+     */
+    private $devoirs;
+
+
+    public function __construct()
+    {
+        $this->cours = new ArrayCollection();
+        $this->competences = new ArrayCollection();
+        $this->devoirs = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -68,6 +94,42 @@ class Formateur
     public function setDateDeNaissance(\DateTimeInterface $date_de_naissance): self
     {
         $this->date_de_naissance = $date_de_naissance;
+
+        return $this;
+    }
+
+    public function getCours()
+    {
+        return $this->cours;
+    }
+
+    public function setCours(ArrayCollection $cours): self
+    {
+        $this->cours = $cours;
+
+        return $this;
+    }
+
+    public function getCompetences()
+    {
+        return $this->competences;
+    }
+
+    public function setCompetences(ArrayCollection $competences): self
+    {
+        $this->competences = $competences;
+
+        return $this;
+    }
+
+    public function getDevoirs()
+    {
+        return $this->devoirs;
+    }
+
+    public function setDevoirs(ArrayCollection $devoirs): self
+    {
+        $this->devoirs = $devoirs;
 
         return $this;
     }
