@@ -26,7 +26,9 @@ class CoursRepository extends ServiceEntityRepository
     public function findAllCours(): array
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT id, libelle, date_debut, date_fin FROM cours c';
+        $sql = 'SELECT cours.id, cours.libelle, cours.date_debut, cours.date_fin, formateur.nom
+        FROM cours
+        INNER JOIN formateur ON cours.formateur_id=formateur.id';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
