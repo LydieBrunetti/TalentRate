@@ -3,15 +3,14 @@
 namespace App\Repository;
 
 use App\Entity\Cours;
-use App\Entity\Periode;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Periode|null find($id, $lockMode = null, $lockVersion = null)
- * @method Periode|null findOneBy(array $criteria, array $orderBy = null)
- * @method Periode[]    findAll()
- * @method Periode[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Cours|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Cours|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Cours[]    findAll()
+ * @method Cours[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class CoursRepository extends ServiceEntityRepository
 {
@@ -20,22 +19,20 @@ class CoursRepository extends ServiceEntityRepository
         parent::__construct($registry, Cours::class);
     }
 
-    // /**
-    //  * @return Periode[] Returns an array of Periode objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Cours[] Returns an array of Cours objects
+      */
+    
+    public function findAllCours(): array
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT id, libelle, date_debut, date_fin FROM cours c';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Periode
