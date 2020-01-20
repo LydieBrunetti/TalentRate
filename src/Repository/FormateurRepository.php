@@ -19,22 +19,20 @@ class FormateurRepository extends ServiceEntityRepository
         parent::__construct($registry, Formateur::class);
     }
 
-    // /**
-    //  * @return Formateur[] Returns an array of Formateur objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Formateur[] Returns an array of Formateur objects
+      */
+    
+    public function findBy($value)
     {
         return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
+            ->andWhere('f.id = :val')
             ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Formateur

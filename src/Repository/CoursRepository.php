@@ -23,7 +23,7 @@ class CoursRepository extends ServiceEntityRepository
       * @return Cours[] Returns an array of Cours objects
       */
     
-    public function findAllCours(): array
+    public function findAll(): array
     {
         $conn = $this->getEntityManager()->getConnection();
         $sql = 'SELECT cours.id, cours.libelle, cours.date_debut, cours.date_fin, formateur.nom
